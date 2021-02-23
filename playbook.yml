@@ -1,0 +1,13 @@
+---
+
+- name: 全般的な設定
+  hosts: all
+  become: yes
+
+  roles:
+    - common
+    - apt
+    - minio
+    - web
+    - php
+    - mariadb

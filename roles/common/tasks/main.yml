@@ -1,0 +1,9 @@
+---
+# tasks file for common
+- name: 公開鍵を登録
+  authorized_key:
+    user: dev-user
+    state: present
+    key: https://github.com/{{ item.name }}.keys
+  with_items:
+    - "{{ users }}"

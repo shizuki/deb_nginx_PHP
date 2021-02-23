@@ -1,0 +1,9 @@
+---
+
+all:
+  hosts:
+    test:
+  vars:
+    users:
+        - { name: 'shizuki' }
+        - { name: 'kaede-kun' }
