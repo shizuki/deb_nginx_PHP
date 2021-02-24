@@ -6,8 +6,8 @@
 
   roles:
     - common
-    - apt
-    - minio
-    - web
     - php
+    - web
     - mariadb
+    - minio
+    - apt
