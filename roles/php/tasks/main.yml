@@ -1,2 +1,16 @@
 ---
 # tasks file for php
+
+- name: PHPのインストール
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+  vars:
+    packages:
+    - php-fpm
+    - php-mbstring
+    - php-xml
+    - php-gd
+    - php-zip
+    - php-mysql
