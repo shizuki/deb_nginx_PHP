@@ -1,2 +1,6 @@
 ---
-# vars file for common
+
+users:
+  - { name: 'shizuki' }
+  - { name: 'kaede-kun' }
+

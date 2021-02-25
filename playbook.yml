@@ -6,8 +6,17 @@
 
   roles:
     - common
-    - php
-    - web
     - mariadb
+    - web
+    - php-fpm
+    - composer
     - minio
-    - apt
+    - nodejs
+
+
+git filter-branch -f --env-filter \
+  "GIT_AUTHOR_NAME='shizuki'; \
+   GIT_AUTHOR_EMAIL='shizuki17xx@gmail.com'; \
+   GIT_COMMITTER_NAME='shizuki'; \
+   GIT_COMMITTER_EMAIL='shizuki17xx@gmail.com';" \
+  HEAD
