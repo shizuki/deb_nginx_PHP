@@ -1,16 +1,50 @@
 ---
-# tasks file for php
 
+- name: PHP7.4リポジトリのGPG鍵を追加
+  become: true
+  get_url:
+    url: https://packages.sury.org/php/apt.gpg
+    dest: /etc/apt/trusted.gpg.d/php.gpg
+    mode: '0644'
+- name: PHP7.4リポジトリを追加
+  become: true
+  copy:
+    src: php.list
+    dest: /etc/apt/sources.list.d/php.list
+    owner: root
+    group: root
+    mode: 644
 - name: PHPのインストール
+  become: true
   apt:
-    name: "{{ packages }}"
-    state: latest
+    name:
+      - php7.4-fpm
+      - php7.4-bcmath
+      - php7.4-bz2
+      - php7.4-curl
+      - php7.4-intl
+      - php7.4-gd
+      - php7.4-mbstring
+      - php7.4-mysql
+      - php7.4-zip
+      - php7.4-xml
+    state: present
     update_cache: yes
-  vars:
-    packages:
-    - php-fpm
-    - php-mbstring
-    - php-xml
-    - php-gd
-    - php-zip
-    - php-mysql
+- name: 設定ファイルのコピー
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: /etc/php/7.4/fpm/
+    owner: root
+    group: root
+    mode: 644
+  with_items:
+    - php-fpm.conf
+    - php.ini
+# - name: 起動
+#   become: true
+#   systemd:
+#     name: mariadb
+#     state: restarted
+#     daemon_reload: yes
+#     enabled: yes

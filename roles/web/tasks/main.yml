@@ -1,2 +1,31 @@
 ---
-# tasks file for web
+
+- name: nginxのインストール
+  become: true
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+- name: システム設定ファイルのコピー
+  become: true
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/
+    owner: root
+    group: root
+    mode: 644
+- name: サイト設定ファイルのコピー
+  become: true
+  copy:
+    src: default
+    dest: /etc/nginx/sites-available/
+    owner: root
+    group: root
+    mode: 644
+- name: 起動
+  become: true
+  systemd:
+    name: nginx
+    state: restarted
+    daemon_reload: yes
+    enabled: yes

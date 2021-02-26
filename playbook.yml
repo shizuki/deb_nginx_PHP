@@ -10,5 +10,5 @@
     - web
     - php-fpm
     - composer
-    - minio
-    - nodejs
+#    - minio
+#    - nodejs

@@ -1,2 +1,5 @@
 ---
-# vars file for mariadb
+
+mariadb:
+  #rootパスワード
+  root_password: << Enter your root password >>

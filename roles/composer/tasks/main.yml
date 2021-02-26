@@ -1,2 +1,8 @@
 ---
-# tasks file for minio
+
+- name: composrのインストール
+  become: true
+  apt:
+    name: composer
+    state: present
+    update_cache: yes

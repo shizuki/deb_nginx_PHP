@@ -1,5 +1,5 @@
 ---
-# tasks file for common
+
 - name: 公開鍵を登録
   authorized_key:
     user: dev-user
@@ -7,3 +7,13 @@
     key: https://github.com/{{ item.name }}.keys
   with_items:
     - "{{ users }}"
+- name: 必要になるパッケージをインストール
+  become: true
+  apt:
+    state: present
+    name:
+      - lsb-release
+      - apt-transport-https
+      - ca-certificates
+      - wget
+    update_cache: yes

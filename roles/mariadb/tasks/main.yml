@@ -1,4 +1,46 @@
 ---
 
-- name MariaDBのインストール
-
+- name: MariaDBとAnsible用mysqlモジュールのインストール
+  become: true
+  apt:
+    state: present
+    name:
+      - mariadb-server
+      - python-mysqldb
+      - python3-mysqldb
+    update_cache: yes
+- name: mariaDBサービス有効化と起動
+  become: true
+  systemd:
+    name: mariadb
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+- name: mysql_secure_installation.sqlをコピー
+  become: true
+  copy:
+    src: mysql_secure_installation.sql
+    dest: /root/
+    owner: root
+    group: root
+    mode: 644
+- name: mysql_secure_installationのsqlを実行
+  become: true
+  mysql_db:
+    state: import
+    name: all
+    target: /root/mysql_secure_installation.sql
+- name: 基本のデータベース作成
+  mysql_db:
+    name: base
+    state: present
+- name: rootパスワード設定
+  mysql_user:
+    name: "root"
+    host: "{{item}}"
+    password: "{{ mariadb.root_password }}"
+  with_items:
+    - 127.0.0.1
+    - ::1
+    - localhost.localdomain
+    - localhost
