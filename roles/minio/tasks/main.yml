@@ -29,7 +29,7 @@
   become: true
   copy:
     src: settings
-    dest: /etc/default
+    dest: /etc/default/minio
 - name: minioサービス有効化と起動
   become: true
   systemd:

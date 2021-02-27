@@ -16,4 +16,5 @@
       - apt-transport-https
       - ca-certificates
       - wget
+      - curl
     update_cache: yes

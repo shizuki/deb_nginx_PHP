@@ -22,6 +22,21 @@
     owner: root
     group: root
     mode: 644
+- name: /var/www/htmlの所有者とパーミッションを変更
+  file:
+    path: /var/www/html
+    state: directory
+    recurse: yes
+    mode: 777
+    owner: dev-user
+    group: dev-user
+- name: phpinfo()を表示するファイルをコピー
+  copy:
+    src: info.php
+    dest: /var/www/html/
+    owner: dev-user
+    group: dev-user
+    mode: 644
 - name: 起動
   become: true
   systemd:

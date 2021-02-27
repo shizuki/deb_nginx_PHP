@@ -6,7 +6,11 @@ MINIO_VOLUMES="/var/minio/s3"
 MINIO_OPTS="--address :9000"
 
 # Access Key of the server.
-MINIO_ACCESS_KEY=<< Enter your KEY >>
+MINIO_ACCESS_KEY=ACCESS_KEY
 
 # Secret key of the server.
-MINIO_SECRET_KEY=<< Enter your KEY >>
+MINIO_SECRET_KEY=SECRET_KEY
+
+MINIO_ROOT_USER=unique-minioadmin
+MINIO_ROOT_PASSWORD=secure-minioadmin-password
+$

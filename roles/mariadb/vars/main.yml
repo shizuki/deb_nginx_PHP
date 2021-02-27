@@ -2,4 +2,4 @@
 
 mariadb:
   #rootパスワード
-  root_password: << Enter your root password >>
+  root_password: R00TP455W0RD
