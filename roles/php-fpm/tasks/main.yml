@@ -41,10 +41,3 @@
   with_items:
     - php-fpm.conf
     - php.ini
-# - name: 起動
-#   become: true
-#   systemd:
-#     name: mariadb
-#     state: restarted
-#     daemon_reload: yes
-#     enabled: yes

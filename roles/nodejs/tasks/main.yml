@@ -1,2 +1,29 @@
 ---
-# tasks file for apt
+
+- name: nodejsのリポジトリを追加
+  shell: curl -sL https://deb.nodesource.com/setup_{{ nodeversion }}.x | sudo -E bash -
+- name: nodejsのインストール
+  become: true
+  apt:
+    state: present
+    name:
+      - nodejs
+      - build-essential
+    update_cache: yes
+- name: yarnリポジトリのGPG鍵を追加
+  shell: curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+- name: yarnリポジトリを追加
+  become: true
+  copy:
+    src: yarn.list
+    dest: /etc/apt/sources.list.d/
+    owner: root
+    group: root
+    mode: 644
+- name: yarnのインストール
+  become: true
+  apt:
+    state: present
+    name:
+      - yarn
+    update_cache: yes
