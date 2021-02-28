@@ -23,11 +23,12 @@
     group: root
     mode: 644
 - name: /var/www/htmlの所有者とパーミッションを変更
+  become: true
   file:
     path: /var/www/html
     state: directory
     recurse: yes
-    mode: 777
+    mode: 0777
     owner: dev-user
     group: dev-user
 - name: phpinfo()を表示するファイルをコピー
