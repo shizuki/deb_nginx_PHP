@@ -1,8 +1,9 @@
 ---
 
+- name: composrのインストールスクリプトをダウンロード
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /home/dev-user/composer-setup.php
 - name: composrのインストール
   become: true
-  apt:
-    name: composer
-    state: present
-    update_cache: yes
+  shell: php /home/dev-user/composer-setup.php --install-dir=/usr/local/bin --filename=composer
